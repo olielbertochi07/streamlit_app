@@ -15,12 +15,15 @@ def Listar_Produtos():
         if idx > 0:
             st.markdown('<hr class="linha-presupuesto">', unsafe_allow_html=True)
             st.markdown("<style> .linha-presupuesto {margin: 0px 0;}</style>",unsafe_allow_html=True)
+
         btnImg = st.button(f"Imagen Nº: {row["Id"]}")
         st.text("")
+        e = 0
         if btnImg:   
             e = row["Id"] 
         else:
             e = 0
+
         id_format = (f'ID: {row["Id"]}')
         codigo_format = (f'{row["Codigo"]}')
         st.markdown(f'<div style="float: left;">{id_format}</div>', unsafe_allow_html=True)
@@ -32,10 +35,14 @@ def Listar_Produtos():
             stock_formatted = "<span style='color: red;'>Stock: {:,} UN</span>".format(int(row['Stock'])).replace(",", ".")
         else:
             stock_formatted = "<span style='color: green;'>Stock: {:,} UN</span>".format(int(row['Stock'])).replace(",", ".")
+
         st.markdown(f'{stock_formatted}', unsafe_allow_html=True)
         may_formatted = "Mayorista: " + "{:,} Gs".format(int(row['Mayorista'])).replace(",", ".")
         vent_formatted ="Venta: " + "{:,} Gs".format(int(row['Venta'])).replace(",", ".")     
-        st.markdown(f'<div style="float: left;">{may_formatted}</div><div style="float: right;">{vent_formatted}</div>', unsafe_allow_html=True)     
+        st.markdown(f'<div style="float: left;">{may_formatted}</div><div style="float: right;">{vent_formatted}</div>', unsafe_allow_html=True)  
+
         if e > 0:
             st.markdown("teste")  
-            submit_button = st.form_submit_button(label='Volver')
+            vlvbtn = st.button("Vovler")
+            if vlvbtn:
+                e=0
