@@ -2,7 +2,6 @@ import base64
 import streamlit as st
 from app_functions import get_filtered_data
 from db_functions import get_database_connection
-
 def Listar_Produtos():
     st.subheader("Lista de Productos")
     st.subheader("")
@@ -17,7 +16,6 @@ def Listar_Produtos():
         if idx > 0:
             st.markdown('<hr class="linha-presupuesto">', unsafe_allow_html=True)
             st.markdown("<style> .linha-presupuesto {margin: 0px 0;}</style>",unsafe_allow_html=True)
-
         btnImg = st.button(f"Imagen Nº: {row["Id"]}")
         st.text("")
         if btnImg:   
@@ -38,14 +36,14 @@ def Listar_Produtos():
         st.markdown(f'{stock_formatted}', unsafe_allow_html=True)
         may_formatted = "Mayorista: " + "{:,} Gs".format(int(row['Mayorista'])).replace(",", ".")
         vent_formatted ="Venta: " + "{:,} Gs".format(int(row['Venta'])).replace(",", ".")     
-        st.markdown(f'<div style="float: left;">{may_formatted}</div><div style="float: right;">{vent_formatted}</div>', unsafe_allow_html=True) 
+        st.markdown(f'<div style="float: left;">{may_formatted}</div><div style="float: right;">{vent_formatted}</div>', unsafe_allow_html=True)     
         if e > 0:
             with st.form(key='frm_img'):
                 st.markdown(row["Descripcion"])   
                 mydb = get_database_connection() 
                 myc = mydb.cursor()
                 SQL = "SELECT img, n_img FROM v_app_lista_imagens_produtos WHERE id_producto = %s;"
-                myc.execute(SQL, (row["Id"],))
+                myc.execute(SQL, row["Id"],)
                 images = myc.fetchall()
                 for img_data in images:
                     encoded_img = base64.b64encode(img_data[0]).decode("utf-8")
