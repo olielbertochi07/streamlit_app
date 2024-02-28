@@ -12,10 +12,6 @@ def Listar_Produtos():
     results = get_filtered_data(filtro_id, f'%{filtro_codigo}%', f'%{filtro_descricao}%')
     formatted_results = [{"Id": row[0], "Codigo": row[1], "Descripcion": row[2], "Stock": row[3], "Min": row[4], "Mayorista": row[5], "Venta": row[6]} for row in results]
     for idx, row in enumerate(formatted_results):
-        if idx > 0:
-            st.markdown('<hr class="linha-presupuesto">', unsafe_allow_html=True)
-            st.markdown("<style> .linha-presupuesto {margin: 0px 0;}</style>",unsafe_allow_html=True)
-
         btnImg = st.button(f"Imagen Nº: {row["Id"]}")
         st.text("")
         e = 0
@@ -46,3 +42,6 @@ def Listar_Produtos():
             vlvbtn = st.button("Vovler")
             if vlvbtn:
                 e=0
+
+        st.markdown('<hr class="linha-presupuesto">', unsafe_allow_html=True)
+        st.markdown("<style> .linha-presupuesto {margin: 0px 0;}</style>",unsafe_allow_html=True)
