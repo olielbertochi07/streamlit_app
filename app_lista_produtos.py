@@ -1,4 +1,3 @@
-import base64
 import streamlit as st
 from app_functions import get_filtered_data
 from db_functions import get_database_connection
@@ -38,6 +37,5 @@ def Listar_Produtos():
         vent_formatted ="Venta: " + "{:,} Gs".format(int(row['Venta'])).replace(",", ".")     
         st.markdown(f'<div style="float: left;">{may_formatted}</div><div style="float: right;">{vent_formatted}</div>', unsafe_allow_html=True)     
         if e > 0:
-            st.markdown(row["Id"])
-            st.markdown(row["Descripcion"])   
-            submit_button = st.form_submit_button(label='Volver')     
+            st.markdown("teste")  
+            submit_button = st.form_submit_button(label='Volver')
