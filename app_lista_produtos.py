@@ -38,7 +38,6 @@ def Listar_Produtos():
         vent_formatted ="Venta: " + "{:,} Gs".format(int(row['Venta'])).replace(",", ".")     
         st.markdown(f'<div style="float: left;">{may_formatted}</div><div style="float: right;">{vent_formatted}</div>', unsafe_allow_html=True)     
         if e > 0:
-            with st.form(key='frm_img'):
-                st.markdown(row["Id"])
-                st.markdown(row["Descripcion"])   
-                submit_button = st.form_submit_button(label='Volver')     
+            st.markdown(row["Id"])
+            st.markdown(row["Descripcion"])   
+            submit_button = st.form_submit_button(label='Volver')     
