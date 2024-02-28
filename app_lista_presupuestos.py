@@ -21,7 +21,7 @@ def lista_items(flt_):
     mydb.close()
     return results
 
-def Filtrar_Presupuesto():
+def Listar_Presupuesto():
     
     st.subheader("Lista de Presupuesto")
     st.subheader("")

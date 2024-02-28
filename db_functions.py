@@ -13,12 +13,3 @@ def get_database_connection():
         port=DB_PORT,
         database=DB_DATABASE
         )
-def get_filtered_data(filtro_id, filtro_codigo, filtro_descricao):
-    mydb = get_database_connection()
-    mycursor = mydb.cursor()
-    sql = "CALL `App_Consulta_Stock`(%s, %s, %s, '100')"
-    mycursor.execute(sql, (filtro_id, f'%{filtro_codigo}%', f'%{filtro_descricao}%'))
-    results = mycursor.fetchall()
-    mycursor.close()
-    mydb.close()
-    return results

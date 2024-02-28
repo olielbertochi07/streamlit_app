@@ -1,5 +1,5 @@
 import streamlit as st
-from db_functions import get_filtered_data
+from app_functions import get_filtered_data
 
 def Listar_Produtos():
     st.subheader("Lista de Productos")

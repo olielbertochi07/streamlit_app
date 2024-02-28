@@ -1,9 +1,9 @@
 import streamlit as st
-from app_lista_produtos import Listar_Produtos
 from db_functions import *
 from app_functions import *
-from app_lista_presupuestos import Filtrar_Presupuesto
+from app_lista_presupuestos import *
 from app_nuevo_presupuesto import *
+from app_lista_produtos import *
 opcoes = ["Lista de Stock", "Presupuesto","Nuevo Presupuesto"]
 def main():
     if 'logged_in' not in st.session_state:
@@ -14,7 +14,7 @@ def main():
         if choice == "Lista de Stock":
             Listar_Produtos()
         if choice == "Presupuesto":
-            Filtrar_Presupuesto()
+            Listar_Presupuesto()
         if choice == "Nuevo Presupuesto":
             Nuevo_Presupuesto()
     else:
