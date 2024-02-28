@@ -2,6 +2,7 @@ import base64
 import streamlit as st
 from app_functions import get_filtered_data
 from db_functions import get_database_connection
+
 def Listar_Produtos():
     st.subheader("Lista de Productos")
     st.subheader("")
@@ -16,30 +17,28 @@ def Listar_Produtos():
         if idx > 0:
             st.markdown('<hr class="linha-presupuesto">', unsafe_allow_html=True)
             st.markdown("<style> .linha-presupuesto {margin: 0px 0;}</style>",unsafe_allow_html=True)
-        left_column, right_column = st.columns([1, 3])
+
         btnImg = st.button(f"Imagen Nº: {row["Id"]}")
         st.text("")
         if btnImg:   
             e = row["Id"] 
         else:
             e = 0
-        with left_column:
-            id_format = (f'ID: {row["Id"]}')
-            codigo_format = (f'{row["Codigo"]}')
-            st.markdown(f'<div style="float: left;">{id_format}</div>', unsafe_allow_html=True)
-            st.markdown(f'<div style="float: left;">{codigo_format}</div>', unsafe_allow_html=True)     
-            descripcion_format = (f'{row["Descripcion"]}')
-            st.markdown(f'<div style="text-align; font-weight: bold;">{descripcion_format}</div>', unsafe_allow_html=True)
-            st.markdown(f'<div style="text-align; font-weight: bold;">' '</div>', unsafe_allow_html=True) 
-            if row['Stock'] <= row['Min']:
-                stock_formatted = "<span style='color: red;'>Stock: {:,} UN</span>".format(int(row['Stock'])).replace(",", ".")
-            else:
-                stock_formatted = "<span style='color: green;'>Stock: {:,} UN</span>".format(int(row['Stock'])).replace(",", ".")
-            st.markdown(f'{stock_formatted}', unsafe_allow_html=True)
-        with right_column:
-            may_formatted = "Mayorista: " + "{:,} Gs".format(int(row['Mayorista'])).replace(",", ".")
-            vent_formatted ="Venta: " + "{:,} Gs".format(int(row['Venta'])).replace(",", ".")     
-            st.markdown(f'<div style="float: left;">{may_formatted}</div><div style="float: right;">{vent_formatted}</div>', unsafe_allow_html=True)     
+        id_format = (f'ID: {row["Id"]}')
+        codigo_format = (f'{row["Codigo"]}')
+        st.markdown(f'<div style="float: left;">{id_format}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="float: left;">{codigo_format}</div>', unsafe_allow_html=True)     
+        descripcion_format = (f'{row["Descripcion"]}')
+        st.markdown(f'<div style="text-align; font-weight: bold;">{descripcion_format}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="text-align; font-weight: bold;">' '</div>', unsafe_allow_html=True) 
+        if row['Stock'] <= row['Min']:
+            stock_formatted = "<span style='color: red;'>Stock: {:,} UN</span>".format(int(row['Stock'])).replace(",", ".")
+        else:
+            stock_formatted = "<span style='color: green;'>Stock: {:,} UN</span>".format(int(row['Stock'])).replace(",", ".")
+        st.markdown(f'{stock_formatted}', unsafe_allow_html=True)
+        may_formatted = "Mayorista: " + "{:,} Gs".format(int(row['Mayorista'])).replace(",", ".")
+        vent_formatted ="Venta: " + "{:,} Gs".format(int(row['Venta'])).replace(",", ".")     
+        st.markdown(f'<div style="float: left;">{may_formatted}</div><div style="float: right;">{vent_formatted}</div>', unsafe_allow_html=True) 
         if e > 0:
             with st.form(key='frm_img'):
                 st.markdown(row["Descripcion"])   
