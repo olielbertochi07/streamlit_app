@@ -1,3 +1,4 @@
+import base64
 import streamlit as st
 from db_functions import *
 from app_functions import *
